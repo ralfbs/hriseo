@@ -20,6 +20,8 @@ plugin.tx_hriseo {
   		copyright = Ralf Schneider, hr-interactive
   		# cat=plugin.tx_hriseo//a; type=string; label=language for all pages
   		language = DE
+  		# cat=plugin.tx_hriseo//a; type=string; label=URL of the home page
+  		baseURL = {$baseURL}
 	}
 }
 

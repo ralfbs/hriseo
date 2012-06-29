@@ -36,7 +36,7 @@ page.headerData.509 < plugin.tx_hriseo.canonical
 # enable real_url
 config {
   simulateStaticDocuments = 0
-  baseURL = {$baseURL}
+  baseURL = {$plugin.tx_hriseo.settings.baseURL}
   tx_realurl_enable = 1
 }
 
