@@ -1,0 +1,86 @@
+plugin.tx_hriseo {
+	view {
+		templateRootPath = {$plugin.tx_hriseo.view.templateRootPath}
+		partialRootPath = {$plugin.tx_hriseo.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_hriseo.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_hriseo.persistence.storagePid}
+	}
+}
+
+plugin.tx_hriseo._CSS_DEFAULT_STYLE (
+
+)
+
+#canonical tags
+plugin.tx_hriseo.canonical = TEXT
+plugin.tx_hriseo.canonical {
+	typolink {
+		parameter.data = TSFE:id
+		returnLast = url
+		useCacheHash = 1
+		# add all get parameters from the current URL
+		addQueryString = 1
+		addQueryString.method = GET
+		# remove the page id from the parameters so it is not inserted twice
+		addQueryString.exclude = id
+		returnLast = url
+	}
+	wrap =  <link rel="canonical=" href="{$baseURL}|" />
+}
+page.headerData.509 < plugin.tx_hriseo.canonical
+
+
+
+# enable real_url
+config {
+  simulateStaticDocuments = 0
+  baseURL = {$baseURL}
+  tx_realurl_enable = 1
+}
+
+
+# individual title 2: no title
+config.noPageTitle = 2
+page.headerData.508 = TEXT
+page.headerData.508 {
+	field = subtitle // title
+    wrap = <title>{$sitename}:&nbsp;|</title>
+}
+
+
+
+# meta tags
+page.meta {
+  title {
+    data = page:subtitle // page:title 
+  }
+  description {
+    data = page:description
+    ifEmpty.data = levelfield :-1, description, slide
+    # display meta tag only if not empty
+    required = 1
+  }
+  keywords {
+    data = page:keywords
+    ifEmpty.data = levelfield :-1, keywords, slide
+    required = 1
+  }
+  author {
+    data = levelfield :-1, author, slide
+    ifEmpty  = {$plugin.tx_hriseo.settings.author}
+    required = 1
+  }
+  date {
+    data = page:SYS_LASTCHANGED // page:crdate
+    date = Y-m-d
+  }
+  robots = {$plugin.tx_hriseo.settings.robots}
+  robots.required = 1
+  copyright = {$plugin.tx_hriseo.settings.copyright}
+  copyright.required = 1
+  language = {$plugin.tx_hriseo.settings.language}
+  language.required = 1
+}
+# @see http://blog.sbtheke.de/web-development/typo3/meta-keywords-und-description

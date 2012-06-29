@@ -1,0 +1,31 @@
+plugin.tx_hriseo {
+	view {
+		# cat=plugin.tx_hriseo/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:hriseo/Resources/Private/Templates/
+		# cat=plugin.tx_hriseo/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:hriseo/Resources/Private/Partials/
+		# cat=plugin.tx_hriseo/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:hriseo/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_hriseo//a; type=string; label=Default storage PID
+		storagePid = 
+	}
+	settings {
+		# cat=plugin.tx_hriseo//a; type=string; label=Default default robots settings for pages
+  		robots = index,follow
+  		# cat=plugin.tx_hriseo//a; type=string; label=Default author if non in rootline 
+  		author = Ralf Schneider, hr-interactive
+  		# cat=plugin.tx_hriseo//a; type=string; label=Copyright - shown on all pages
+  		copyright = Ralf Schneider, hr-interactive
+  		# cat=plugin.tx_hriseo//a; type=string; label=language for all pages
+  		language = DE
+	}
+}
+
+
+[globalVar = TSFE:page|no_search = 1]
+   plugin.tx_hriseo.settings.robots = noindex,follow
+[global]
+
+
