@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'hr-interactive SEO',
-	'description' => 'SEO functions like meta tags, canonical page tags, real_url etc',
+	'description' => 'assembly of SEO tools like meta tags, canonical page tags, real_url etc',
 	'category' => 'plugin',
 	'author' => 'Ralf Schneider',
 	'author_email' => 'ralf@hr-interactive.de',
