@@ -9,6 +9,7 @@ plugin.tx_hriseo {
 	}
 }
 
+
 plugin.tx_hriseo._CSS_DEFAULT_STYLE (
 
 )
@@ -27,10 +28,47 @@ plugin.tx_hriseo.canonical {
 		addQueryString.exclude = id
 		returnLast = url
 	}
-	wrap =  <link rel="canonical=" href="{$baseURL}|" />
+	wrap =  <link rel="canonical=" href="{$plugin.tx_hriseo.settings.baseURL}|" />
 }
 page.headerData.509 < plugin.tx_hriseo.canonical
 
+
+##
+# robots.txt
+#
+plugin.tx_hriseo {
+
+  robots = USER
+  robots {
+    userFunc = tx_extbase_core_bootstrap->run
+    # see localconf.php
+    pluginName = Robots
+    # extensionName (foo_bar => FooBar)
+    extensionName = Hriseo
+ 
+    switchableControllerActions {
+        Robots {
+            1 = show 
+        }
+    }
+ 
+    settings =< plugin.tx_hriseo.settings
+    persistence =< plugin.tx_hriseo.persistence
+    view =< plugin.tx_hriseo.view
+  }
+}
+robots = PAGE
+robots {
+  typeNum = 201
+  10 >
+  10 < plugin.tx_hriseo.robots
+  10.pid_list = 1
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders = Content-type:text/plain
+    no_cache = 1
+  }
+}
 
 
 # enable real_url
@@ -46,7 +84,7 @@ config.noPageTitle = 2
 page.headerData.508 = TEXT
 page.headerData.508 {
 	field = subtitle // title
-    wrap = <title>{$sitename}:&nbsp;|</title>
+    wrap = <title>{$plugin.tx_hriseo.settings.sitename}:&nbsp;|</title>
 }
 
 
@@ -84,3 +122,6 @@ page.meta {
   language.required = 1
 }
 # @see http://blog.sbtheke.de/web-development/typo3/meta-keywords-und-description
+
+
+

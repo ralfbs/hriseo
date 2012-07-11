@@ -1,0 +1,13 @@
+User-Agent: *
+Allow: /                                      	# Allow bot to enter
+Disallow: /fileadmin/    						# Exclude only folders with no
+                                              	# link from frontend, like
+                                              	# templates, css, js.
+Disallow: /t3lib/
+Disallow: /typo3/
+Disallow: /typo3conf/
+Disallow: /typo3temp/
+Disallow: /*?id=*                             # Disable non-realurl
+Disallow: /*&type=98                          # Disable print pages
+
+Sitemap: http://{HTTP_HOST}/index.php?id={sitemapPid}

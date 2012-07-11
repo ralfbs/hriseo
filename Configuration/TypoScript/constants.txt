@@ -8,20 +8,24 @@ plugin.tx_hriseo {
 		layoutRootPath = EXT:hriseo/Resources/Private/Layouts/
 	}
 	persistence {
-		# cat=plugin.tx_hriseo//a; type=string; label=Default storage PID
+		# cat=plugin.tx_hriseo//g; type=string; label=Default storage PID
 		storagePid = 
 	}
 	settings {
-		# cat=plugin.tx_hriseo//a; type=string; label=Default default robots settings for pages
-  		robots = index,follow
-  		# cat=plugin.tx_hriseo//a; type=string; label=Default author if non in rootline 
+		# cat=plugin.tx_hriseo//a; type=string; label=Sitename: Prepend to all page titles
+  		sitename = hr-interactive
+  		# cat=plugin.tx_hriseo//b; type=string; label=Default author if non in rootline 
   		author = Ralf Schneider, hr-interactive
-  		# cat=plugin.tx_hriseo//a; type=string; label=Copyright - shown on all pages
+  		# cat=plugin.tx_hriseo//c; type=string; label=Copyright: shown on all pages
   		copyright = Ralf Schneider, hr-interactive
-  		# cat=plugin.tx_hriseo//a; type=string; label=language for all pages
+  		# cat=plugin.tx_hriseo//d; type=string; label=Languge: Overwrite for translations if required
   		language = DE
-  		# cat=plugin.tx_hriseo//a; type=string; label=URL of the home page
+  		# cat=plugin.tx_hriseo//e; type=string; label=URL of the home page
   		baseURL = {$baseURL}
+ 		# cat=plugin.tx_hriseo//f; type=string; label=Default default robots settings for pages
+  		robots = index,follow 
+ 		# cat=plugin.tx_hriseo//g; type=string; label=Pid where sitemap is located
+  		sitemapPid =    				
 	}
 }
 

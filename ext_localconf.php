@@ -5,12 +5,13 @@ if (!defined('TYPO3_MODE')) {
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'Pi1',
+	'Robots',
 	array(
-		
+		'Robots' => 'show',
 	),
 	// non-cacheable actions
 	array(
+	    'Robots' => 'show',
 		
 	)
 );
