@@ -28,23 +28,35 @@
  * generate robots.txt
  *
  * @package Hriseo
- * @subpackage Controller
+ * @subpackage Hook
  * @author Ralf Schneider
  */
-class Tx_Hriseo_Controller_RobotsController extends Tx_Extbase_MVC_Controller_ActionController
+class Tx_Hriseo_Hook_Realurl
 {
 
     /**
+     * add specific configuration to realUrl
      *
-     * @return void
+     * @param array $params            
+     * @param tx_realurl_autoconfgen $pObj            
+     * @return array
      */
-    public function showAction ()
+    public function addHriseo (array $params, tx_realurl_autoconfgen $pObj)
     {
-        // var_dump($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']);
-        
-        $extConf = unserialize(
-                $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hriseo']);
-        $this->view->assign('sitemapPid', $extConf['sitemapPid']);
-        $this->view->assign('HTTP_HOST', $_SERVER['HTTP_HOST']);
+        $ret = array_merge_recursive($params['config'], 
+                array(
+                        'fileName' => array(
+                                'index' => array(
+                                        'robots.txt' => array(
+                                                'keyValues' => array(
+                                                        'type' => '201'
+                                                )
+                                        )
+                                )
+                        )
+                ));
+        $ret['fileName']['defaultToHTMLsuffixOnPrev'] = 0;
+        $ret['fileName']['acceptHTMLsuffix'] = 0;
+        return $ret;
     }
 }
