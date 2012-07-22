@@ -6,7 +6,25 @@ plugin.tx_hriseo {
 	}
 	persistence {
 		storagePid = {$plugin.tx_hriseo.persistence.storagePid}
+		classes {
+			Tx_Hriseo_Domain_Model_Pages {
+				mapping {
+					tableName = pages
+					recordType = Tx_Hriseo_Domain_Model_Pages
+				}
+			}
+		}
 	}
+	
+}
+
+config.tx_extbase.persistence.classes {
+    Tx_Hriseo_Domain_Model_Pages {
+        mapping {
+            tableName = pages
+            recordType = Tx_Hriseo_Domain_Model_Pages
+        }
+    }
 }
 
 
@@ -62,6 +80,45 @@ robots {
   typeNum = 201
   10 >
   10 < plugin.tx_hriseo.robots
+  10.pid_list = 1
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders = Content-type:text/plain
+    no_cache = 1
+  }
+}
+
+
+
+##
+# sitemap.xml
+#
+plugin.tx_hriseo {
+
+  sitemap = USER
+  sitemap {
+    userFunc = tx_extbase_core_bootstrap->run
+    # see localconf.php
+    pluginName = Sitemap
+    # extensionName (foo_bar => FooBar)
+    extensionName = Hriseo
+ 
+    switchableControllerActions {
+        Sitemap {
+            1 = show 
+        }
+    }
+ 
+    settings =< plugin.tx_hriseo.settings
+    persistence =< plugin.tx_hriseo.persistence
+    view =< plugin.tx_hriseo.view
+  }
+}
+sitemap = PAGE
+sitemap {
+  typeNum = 202
+  10 >
+  10 < plugin.tx_hriseo.sitemap
   10.pid_list = 1
   config {
     disableAllHeaderCode = 1
