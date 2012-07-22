@@ -122,7 +122,7 @@ sitemap {
   10.pid_list = 1
   config {
     disableAllHeaderCode = 1
-    additionalHeaders = Content-type:text/plain
+    additionalHeaders = Content-type:text/xml
     no_cache = 1
   }
 }

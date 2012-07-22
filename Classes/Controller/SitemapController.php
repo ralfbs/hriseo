@@ -46,14 +46,8 @@ class Tx_Hriseo_Controller_SitemapController extends Tx_Extbase_MVC_Controller_A
      * @return void
      */
     public function showAction ()
-    {
-        // var_dump($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']);
-        $extConf = unserialize(
-                $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hriseo']);
-        $this->view->assign('sitemapPid', $extConf['sitemapPid']);
-        $this->view->assign('HTTP_HOST', $_SERVER['HTTP_HOST']);
-        
-        $pages = $this->pagesRepository->findChildrendByUid(1);
+    {   
+        $pages = $this->pagesRepository->findChildren(1);
         $this->view->assign('tree', $pages);
     }
 

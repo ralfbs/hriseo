@@ -3,7 +3,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 Ralf Schneider <ralf@hr-interactive.de>
+*  (c) 2012 Pascal Dürsteler <pascal.duersteler@gmail.com>
 *  All rights reserved
 *
 *
@@ -25,17 +25,28 @@
 ***************************************************************/
 
 /**
- * Pages repository
+ * Renders a file download with the FILELINK cObject so it integrates
+ * with e.g.
+ * ml_links.
  *
- * @package Hriseo
- * @subpackage Domain\Model
- * @author Ralf Schneider
+ * @package Feupload
+ * @subpackage ViewHelpers
+ * @author Pascal Dürsteler
  */
-class Tx_Hriseo_Domain_Model_Pages extends Tx_Extbase_DomainObject_AbstractEntity
+class Tx_Hriseo_ViewHelpers_PageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
 {
 
-    public function getLastmod ()
+    /**
+     *
+     * @param Tx_Hriseo_Domain_Model_Pages $page            
+     */
+    public function render ($page)
     {
-        return $this->SYS_LASTCHANGED . var_export($this, true);
+        $cObj = new tslib_cObj();
+        $link = $cObj->getTypoLink_URL($page->getUid());
+        
+        $ret = "<loc>http://{$_SERVER['HTTP_HOST']}/{$link}</loc>";
+        $ret .= "<lastmod>{$page->getLastmod()}</lastmod>";
+        return $ret;
     }
 }

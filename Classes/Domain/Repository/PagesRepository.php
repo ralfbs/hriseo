@@ -46,13 +46,18 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
      * 
      * @param integer $uid            
      */
-    public function findChildrendByUid ($uid)
+    public function findChildren ($uid)
     {
 		$sql = "SELECT *
-				FROM pages";
+				FROM `pages`
+		        WHERE 
+		            `deleted` = 0
+		            AND `no_search` = 0
+		            AND `pid` = {$uid}";
 		$query = $this->createQuery();
 		$query->statement($sql);
 		return $query->execute();
+		
     }
 
     /**
