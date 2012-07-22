@@ -55,6 +55,12 @@ class Tx_Hriseo_Hook_Realurl
                                 )
                         )
                 ));
+        $ret['init'] = array(
+                'enableCHashCache' => '1',
+                'appendMissingSlash' => 'ifNotFile',
+                'enableUrlDecodeCache' => '1',
+                'enableUrlEncodeCache' => '1'
+        );
         $ret['fileName']['defaultToHTMLsuffixOnPrev'] = 0;
         $ret['fileName']['acceptHTMLsuffix'] = 0;
         return $ret;
