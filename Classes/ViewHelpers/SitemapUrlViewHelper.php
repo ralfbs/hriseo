@@ -31,8 +31,28 @@
  * @subpackage ViewHelpers
  * @author Ralf Schneider
  */
-class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
+class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
 {
+
+    /**
+     * loc tag
+     *
+     * @var Tx_Fluid_Core_ViewHelper_TagBuilder
+     */
+    protected $loc;
+
+    /**
+     * lastmod tag
+     *
+     * @var Tx_Fluid_Core_ViewHelper_TagBuilder
+     */
+    protected $lastmod;
+
+    /**
+     *
+     * @var array
+     */
+    protected $settings;
 
     /**
      *
@@ -47,33 +67,49 @@ class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelpe
     }
 
     /**
+     * (non-PHPdoc)
+     *
+     * @see Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper::initialize()
+     */
+    public function initialize ()
+    {
+        $this->loc = new Tx_Fluid_Core_ViewHelper_TagBuilder();
+        $this->loc->setTagName('loc');
+        
+        $this->lastmod = new Tx_Fluid_Core_ViewHelper_TagBuilder();
+        $this->lastmod->setTagName('lastmod');
+        
+        // 1st param: must be 'Settings'
+        // 2nd param: name of extension
+        // 3rd param: name of plugin
+        $this->settings = $this->configurationManager->getConfiguration(
+                'Settings', 'Hriseo', 'Sitemap');
+    }
+
+    /**
      * render the tags for one page (<loc> and <lastmod>)
-     * 
+     *
      * @param Tx_Hriseo_Domain_Model_Pages $page            
      * @return string
      */
     public function render ($page)
     {
-        // 1st param: must be 'Settings'
-        // 2nd param: name of extension
-        // 3rd param: name of plugin
-        $settings = $this->configurationManager->getConfiguration('Settings', 
-                'Hriseo', 'Sitemap');
-        
         $cObj = new tslib_cObj();
         $path = $cObj->getTypoLink_URL($page->getUid());
         
         // @see http://sitemaps.org and
         // http://php.net/manual/de/function.htmlspecialchars.php
-        $link = htmlspecialchars($settings['baseURL'] . $path, ENT_QUOTES, 
+        $link = htmlspecialchars($this->settings['baseURL'] . $path, ENT_QUOTES, 
                 'UTF-8', false);
         
-        $ret = "<loc>{$link}</loc>";
+        $this->loc->setContent($link);
+        $ret = $this->loc->render();
         
         $date = new DateTime();
         $date->setTimestamp($page->getLastmod());
         
-        $ret .= "<lastmod>{$date->format('Y-m-d')}</lastmod>";
+        $this->lastmod->setContent($date->format('Y-m-d'));
+        $ret .= $this->lastmod->render();
         
         return $ret;
     }

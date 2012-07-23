@@ -1,2 +1,0 @@
-# cat=tx_hriseo/basic; type=integer; label=Sitemap Pid: Page where the sitemap resides
-sitemapPid = 0

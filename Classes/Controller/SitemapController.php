@@ -47,9 +47,8 @@ class Tx_Hriseo_Controller_SitemapController extends Tx_Extbase_MVC_Controller_A
      */
     public function showAction ()
     {   
-        $pages = $this->pagesRepository->findChildren(1);
+        $pages = $this->pagesRepository->findSitemap();
         $this->view->assign('tree', $pages);
-        $this->view->assign('baseURL', $this->settings['baseURL']);
     }
 
     /**

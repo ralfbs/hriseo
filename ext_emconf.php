@@ -3,7 +3,7 @@
 
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'hr-interactive SEO',
+	'title' => 'Search Engine Toolkit',
 	'description' => 'assembly of SEO tools like meta tags, canonical page tags, real_url etc',
 	'category' => 'fe',
 	'author' => 'Ralf Schneider',
