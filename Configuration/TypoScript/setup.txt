@@ -11,8 +11,8 @@ plugin.tx_hriseo {
 				mapping {
 					tableName = pages
 					columns {
-            			lastchanged.mapOnProperty = tstamp
             			uid.mapOnProperty = uid
+            			SYS_LASTCHANGED.mapOnProperty = lastmod
         			}
 				}
 			}
@@ -21,17 +21,7 @@ plugin.tx_hriseo {
 	
 }
 
-config.tx_extbase.persistence.classes {
-    Tx_Hriseo_Domain_Model_Pages {
-        mapping {
-            tableName = pages
-			columns {
-				uid.mapOnProperty = uid
-            	lastchanged.mapOnProperty = tstamp
-        	}            
-        }
-    }
-}
+
 
 
 plugin.tx_hriseo._CSS_DEFAULT_STYLE (

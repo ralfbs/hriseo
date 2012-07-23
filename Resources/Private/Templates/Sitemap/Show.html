@@ -2,5 +2,7 @@
 {namespace seo=Tx_Hriseo_ViewHelpers}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> <f:for
 	each="{tree}" as="page">
-	<url> <seo:page page="{page}" /> </url>
+	<f:if condition="{page.isValid}">
+		<url> <seo:page page="{page}" /> </url>
+	</f:if>
 </f:for> </urlset>

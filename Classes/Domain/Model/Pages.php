@@ -49,6 +49,13 @@ class Tx_Hriseo_Domain_Model_Pages extends Tx_Extbase_DomainObject_AbstractEntit
     {
         return $this->lastmod;
     }
-    
 
+    /**
+     *
+     * @return boolean
+     */
+    public function getIsValid ()
+    {
+        return (boolean) (0 != $this->lastmod);
+    }
 }

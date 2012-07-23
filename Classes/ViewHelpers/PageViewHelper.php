@@ -46,7 +46,11 @@ class Tx_Hriseo_ViewHelpers_PageViewHelper extends Tx_Fluid_Core_ViewHelper_Abst
         $link = $cObj->getTypoLink_URL($page->getUid());
         
         $ret = "<loc>http://{$_SERVER['HTTP_HOST']}/{$link}</loc>";
-        $ret .= "<lastmod>x</lastmod>" . var_export($page, true);
+        
+        $date = new DateTime();
+        $date->setTimestamp($page->getLastmod());
+        
+        $ret .= "<lastmod>{$date->format('Y-m-d')}</lastmod>";
         return $ret;
     }
 }
