@@ -10,7 +10,10 @@ plugin.tx_hriseo {
 			Tx_Hriseo_Domain_Model_Pages {
 				mapping {
 					tableName = pages
-					recordType = Tx_Hriseo_Domain_Model_Pages
+					columns {
+            			lastchanged.mapOnProperty = tstamp
+            			uid.mapOnProperty = uid
+        			}
 				}
 			}
 		}
@@ -22,7 +25,10 @@ config.tx_extbase.persistence.classes {
     Tx_Hriseo_Domain_Model_Pages {
         mapping {
             tableName = pages
-            recordType = Tx_Hriseo_Domain_Model_Pages
+			columns {
+				uid.mapOnProperty = uid
+            	lastchanged.mapOnProperty = tstamp
+        	}            
         }
     }
 }

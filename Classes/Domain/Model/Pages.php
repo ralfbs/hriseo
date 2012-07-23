@@ -34,8 +34,21 @@
 class Tx_Hriseo_Domain_Model_Pages extends Tx_Extbase_DomainObject_AbstractEntity
 {
 
+    /**
+     * timestamp of last change
+     *
+     * @var string
+     */
+    protected $lastmod;
+
+    /**
+     *
+     * @return string
+     */
     public function getLastmod ()
     {
-        return $this->SYS_LASTCHANGED . var_export($this, true);
+        return $this->lastmod;
     }
+    
+
 }

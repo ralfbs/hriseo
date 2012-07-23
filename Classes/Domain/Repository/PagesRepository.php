@@ -43,21 +43,25 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
 
     /**
      * find all children of given page
-     * 
+     *
      * @param integer $uid            
      */
     public function findChildren ($uid)
     {
-		$sql = "SELECT *
-				FROM `pages`
-		        WHERE 
-		            `deleted` = 0
-		            AND `no_search` = 0
-		            AND `pid` = {$uid}";
-		$query = $this->createQuery();
-		$query->statement($sql);
-		return $query->execute();
-		
+        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `pid` = {$uid}";
+        $query = $this->createQuery();
+        $query->statement($sql);
+        return $query->execute();
+        
+        /*
+        
+        $query = $this->createQuery();
+        // $this->setQuerySettings($query);
+        
+        $constraint = $query->logicalAnd($query->equals('pid', $uid));
+        
+        return $query->matching($constraint)->execute();
+        */
     }
 
     /**
