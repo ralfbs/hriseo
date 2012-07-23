@@ -51,5 +51,19 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
         $query->statement($sql);
         return $query->execute();
     }
+
+    /**
+     * find pages that are marked 'no search'
+     * 
+     * @return Ambigous <Tx_Extbase_Persistence_QueryResultInterface,
+     *         multitype:>
+     */
+    public function findNoSearch ()
+    {
+        $sql = "SELECT * FROM `pages` WHERE `no_search` = 1 AND `deleted` = 0 ";
+        $query = $this->createQuery();
+        $query->statement($sql);
+        return $query->execute();
+    }
 }
 ?>

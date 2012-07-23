@@ -35,16 +35,36 @@ class Tx_Hriseo_Controller_RobotsController extends Tx_Extbase_MVC_Controller_Ac
 {
 
     /**
+     * pagesRepository
+     *
+     * @var Tx_Hriseo_Domain_Repository_PagesRepository
+     */
+    protected $pagesRepository;
+
+    /**
      *
      * @return void
      */
     public function showAction ()
     {
         // var_dump($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']);
-        
         $extConf = unserialize(
                 $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['hriseo']);
         $this->view->assign('sitemapPid', $extConf['sitemapPid']);
         $this->view->assign('HTTP_HOST', $_SERVER['HTTP_HOST']);
+        
+        $this->view->assign('nosearch', $this->pagesRepository->findNoSearch());
+    }
+
+    /**
+     * injectPagesRepository
+     *
+     * @param $pagesRepository Tx_Hriseo_Domain_Repository_PagesRepository            
+     * @return void
+     */
+    public function injectPagesRepository (
+            Tx_Hriseo_Domain_Repository_PagesRepository $pagesRepository)
+    {
+        $this->pagesRepository = $pagesRepository;
     }
 }

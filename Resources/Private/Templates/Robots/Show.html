@@ -9,5 +9,9 @@ Disallow: /typo3conf/
 Disallow: /typo3temp/
 Disallow: /*?id=*                             # Disable non-realurl
 Disallow: /*&type=98                          # Disable print pages
+{namespace seo=Tx_Hriseo_ViewHelpers}
+<f:for each="{nosearch}" as="page">
+<seo:robotsDisallow page="{page}" />
+</f:for>
 
 Sitemap: {settings.baseURL}sitemap.xml
