@@ -3,6 +3,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> <f:for
 	each="{tree}" as="page">
 	<f:if condition="{page.isValid}">
-		<url> <seo:page page="{page}" /> </url>
+		<url> <seo:sitemapUrl page="{page}" /> </url>
 	</f:if>
-</f:for> </urlset>
+</f:for> {baseURL}</urlset>

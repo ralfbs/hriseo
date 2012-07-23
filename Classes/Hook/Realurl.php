@@ -51,6 +51,11 @@ class Tx_Hriseo_Hook_Realurl
                                                 'keyValues' => array(
                                                         'type' => '201'
                                                 )
+                                        ),
+                                        'sitemap.xml' => array(
+                                                'keyValues' => array(
+                                                        'type' => '202'
+                                                )
                                         )
                                 )
                         )
