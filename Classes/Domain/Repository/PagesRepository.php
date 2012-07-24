@@ -35,6 +35,12 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
 {
 
     /**
+     *
+     * @var array
+     */
+    protected $pages = array();
+
+    /**
      * ID of the parent folder|0 if we are at root level
      *
      * @var integer
@@ -43,28 +49,27 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
 
     /**
      * find all children of given page
-     * 
+     *
+     * @param
+     *            integer starting point
      * @return array
      */
-    public function findSitemap ()
+    public function findSitemap ($uid = 0)
     {
-        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `deleted` = 0 AND `doktype` = 1";
-        $query = $this->createQuery();
-        $query->statement($sql);
-        $pages = array();
-        foreach ($query->execute() as $row) {
-            $pages[] = $row;
+        foreach ($this->findChildren($uid) as $child) {
+            $this->pages[] = $child;
+            $this->findSitemap($child->getUid());
         }
-        return $pages;
+        return $this->pages;
     }
 
     /**
      *
-     * @param unknown_type $uid            
+     * @param integer $uid            
      */
     public function findChildren ($uid)
     {
-        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `deleted` = 0 AND `doktype` = 1";
+        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `deleted` = 0 AND `doktype` = 1 AND `pid` = {$uid}";
         $query = $this->createQuery();
         $query->statement($sql);
         $pages = array();
