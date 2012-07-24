@@ -43,18 +43,40 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
 
     /**
      * find all children of given page
+     * 
+     * @return array
      */
     public function findSitemap ()
     {
-        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `deleted` = 0 ";
+        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `deleted` = 0 AND `doktype` = 1";
         $query = $this->createQuery();
         $query->statement($sql);
-        return $query->execute();
+        $pages = array();
+        foreach ($query->execute() as $row) {
+            $pages[] = $row;
+        }
+        return $pages;
+    }
+
+    /**
+     *
+     * @param unknown_type $uid            
+     */
+    public function findChildren ($uid)
+    {
+        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `deleted` = 0 AND `doktype` = 1";
+        $query = $this->createQuery();
+        $query->statement($sql);
+        $pages = array();
+        foreach ($query->execute() as $row) {
+            $pages[] = $row;
+        }
+        return $pages;
     }
 
     /**
      * find pages that are marked 'no search'
-     * 
+     *
      * @return Ambigous <Tx_Extbase_Persistence_QueryResultInterface,
      *         multitype:>
      */
