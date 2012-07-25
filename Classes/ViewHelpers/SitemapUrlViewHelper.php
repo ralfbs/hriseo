@@ -118,7 +118,7 @@ class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelpe
         $this->lastmod->setContent($date->format('Y-m-d'));
         $ret .= $this->lastmod->render();
         
-        $changefreq = $page->getFrequency();
+        $changefreq = $page->getChangefreq();
         if (!empty($changefreq)) {
             $this->tagBuilder->reset();
             $this->tagBuilder->setTagName('changefreq');

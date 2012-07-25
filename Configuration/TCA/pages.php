@@ -7,7 +7,7 @@
  */
 $tmp_hriseo_columns = array(
         
-        'tx_hriseo_frequency' => array(
+        'tx_hriseo_changefreq' => array(
                 'exclude' => 1,
                 'label' => 'LLL:EXT:hriseo/Resources/Private/Language/locallang_db.xml:tx_hriseo_domain_model_pages.frequency',
                 'config' => array(

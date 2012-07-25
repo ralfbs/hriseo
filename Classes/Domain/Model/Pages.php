@@ -45,7 +45,7 @@ class Tx_Hriseo_Domain_Model_Pages extends Tx_Extbase_DomainObject_AbstractEntit
      *
      * @var string
      */
-    protected $frequency;
+    protected $changefreq;
 
     /**
      *
@@ -66,9 +66,9 @@ class Tx_Hriseo_Domain_Model_Pages extends Tx_Extbase_DomainObject_AbstractEntit
      *
      * @return string
      */
-    public function getFrequency ()
+    public function getChangefreq ()
     {
-        return $this->frequency;
+        return $this->changefreq;
     }
 
     /**
