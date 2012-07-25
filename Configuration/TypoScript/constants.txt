@@ -12,17 +12,17 @@ plugin.tx_hriseo {
 		storagePid = 
 	}
 	settings {
-  		# cat=plugin.tx_hriseo//a; type=string; label=URL of the home page
+  		# cat=plugin.tx_hriseo//a; type=string; label=URL of the home page:With trailing slash
   		baseURL = {$baseURL}
 		# cat=plugin.tx_hriseo//b; type=string; label=Sitename: Prepend to all page titles
   		sitename = hr-interactive
-  		# cat=plugin.tx_hriseo//c; type=string; label=Default author if non in rootline 
+  		# cat=plugin.tx_hriseo//c; type=string; label=Default author;Used if non on page or in rootline 
   		author = Ralf Schneider, hr-interactive
   		# cat=plugin.tx_hriseo//d; type=string; label=Copyright: shown on all pages
   		copyright = Ralf Schneider, hr-interactive
   		# cat=plugin.tx_hriseo//e; type=string; label=Languge: Overwrite for translations if required
   		language = DE
- 		# cat=plugin.tx_hriseo//f; type=string; label=Default default robots settings for pages
+ 		# cat=plugin.tx_hriseo//f; type=string; label=Default robots settings:Add meta tag with this value to each page unless Include in Search is disabled 
   		robots = index,follow    				
 	}
 }

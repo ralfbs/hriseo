@@ -73,11 +73,29 @@ class Tx_Hriseo_Domain_Model_Pages extends Tx_Extbase_DomainObject_AbstractEntit
 
     /**
      *
+     * @param string $changefreq            
+     */
+    public function setChangefreq ($changefreq)
+    {
+        $this->changefreq = $changefreq;
+    }
+
+    /**
+     *
      * @return number
      */
     public function getPriority ()
     {
         return $this->priority;
+    }
+
+    /**
+     *
+     * @param string $priority            
+     */
+    public function setPriority ($priority)
+    {
+        $this->priority = $priority;
     }
 
     /**

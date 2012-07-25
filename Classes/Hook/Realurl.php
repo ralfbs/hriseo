@@ -25,7 +25,7 @@
 ***************************************************************/
 
 /**
- * generate robots.txt
+ * Hook into realurl autoconf
  *
  * @package Hriseo
  * @subpackage Hook

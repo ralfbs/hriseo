@@ -127,7 +127,9 @@ class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelpe
         }
         
         $priority = $page->getPriority();
-        if (0 < $priority) {
+        // 0.0: ignore
+        // 0.5: default - do not display
+        if (0 < $priority and 0.5 != $priority) {
             $this->tagBuilder->reset();
             $this->tagBuilder->setTagName('priority');
             $this->tagBuilder->setContent(number_format($priority, 1));

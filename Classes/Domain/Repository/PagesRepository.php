@@ -35,7 +35,8 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
 {
 
     /**
-     *
+     * Collection of found pages
+     * 
      * @var array
      */
     protected $pages = array();
@@ -56,33 +57,65 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
      */
     public function findSitemap ($uid = 0)
     {
-        foreach ($this->findChildren($uid) as $child) {
-            $this->pages[] = $child;
+        $page = $this->findByUid($uid);
+        if ($page instanceof Tx_Hriseo_Domain_Model_Pages) {
+            $this->pages[$uid] = $page;
+        }
+        foreach ($this->findChildren($uid, $page) as $child) {
+            $this->pages[$child->getUid()] = $child;
             $this->findSitemap($child->getUid());
         }
         return $this->pages;
     }
 
     /**
+     * Find all children of the given page
+     * optional inherit priority and changefreq
      *
      * @param integer $uid            
+     * @param Tx_Hriseo_Domain_Model_Pages $parent            
+     * @return array
      */
-    public function findChildren ($uid)
+    public function findChildren ($uid, 
+            Tx_Hriseo_Domain_Model_Pages $parent = null)
     {
+        $pages = array();
+        
         $sql = "SELECT * FROM `pages` ";
         $sql .= "WHERE `no_search` = 0 AND `deleted` = 0 ";
         $sql .= "AND `doktype` = 1 AND `pid` = {$uid} ";
         $query = $this->createQuery();
         $query->statement($sql);
-        $pages = array();
         foreach ($query->execute() as $page) {
+            if ($parent instanceof Tx_Hriseo_Domain_Model_Pages) {
+                if ('' != $parent->getChangefreq()) {
+                    $page->setChangefreq($parent->getChangefreq());
+                }
+                if (0 < $parent->getPriority()) {
+                    $page->setPriority($parent->getPriority());
+                }
+            }
             $pages[] = $page;
         }
         return $pages;
     }
 
     /**
-     * find pages that are marked 'no search'
+     * (non-PHPdoc)
+     *
+     * @see Tx_Extbase_Persistence_Repository::findByUid()
+     */
+    public function findByUid ($uid)
+    {
+        $sql = "SELECT * FROM `pages` WHERE `uid` = {$uid} ";
+        $query = $this->createQuery();
+        $query->statement($sql);
+        $res = $query->execute();
+        return $res->getFirst();
+    }
+
+    /**
+     * find pages that are marked 'no search' (for robots.txt)
      *
      * @return Ambigous <Tx_Extbase_Persistence_QueryResultInterface,
      *         multitype:>
