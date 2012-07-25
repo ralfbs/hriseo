@@ -13,6 +13,8 @@ plugin.tx_hriseo {
 					columns {
             			uid.mapOnProperty = uid
             			SYS_LASTCHANGED.mapOnProperty = lastmod
+            			tx_hriseo_frequency.mapOnProperty = frequency
+            			tx_hriseo_priority.mapOnProperty = priority
         			}
 				}
 			}

@@ -33,7 +33,12 @@
  */
 class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
 {
-
+    /**
+     * 
+     * @var Tx_Fluid_Core_ViewHelper_TagBuilder
+     */
+    protected $tagBuilder;
+    
     /**
      * loc tag
      *
@@ -79,6 +84,8 @@ class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelpe
         $this->lastmod = new Tx_Fluid_Core_ViewHelper_TagBuilder();
         $this->lastmod->setTagName('lastmod');
         
+        $this->tagBuilder = new Tx_Fluid_Core_ViewHelper_TagBuilder();
+        
         // 1st param: must be 'Settings'
         // 2nd param: name of extension
         // 3rd param: name of plugin
@@ -110,6 +117,22 @@ class Tx_Hriseo_ViewHelpers_SitemapUrlViewHelper extends Tx_Fluid_Core_ViewHelpe
         
         $this->lastmod->setContent($date->format('Y-m-d'));
         $ret .= $this->lastmod->render();
+        
+        $changefreq = $page->getFrequency();
+        if (!empty($changefreq)) {
+            $this->tagBuilder->reset();
+            $this->tagBuilder->setTagName('changefreq');
+            $this->tagBuilder->setContent($changefreq);
+            $ret .= $this->tagBuilder->render();
+        }
+        
+        $priority = $page->getPriority();
+        if (0 < $priority) {
+            $this->tagBuilder->reset();
+            $this->tagBuilder->setTagName('priority');
+            $this->tagBuilder->setContent(number_format($priority, 1));
+            $ret .= $this->tagBuilder->render();            
+        }
         
         return $ret;
     }

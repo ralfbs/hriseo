@@ -69,12 +69,14 @@ class Tx_Hriseo_Domain_Repository_PagesRepository extends Tx_Extbase_Persistence
      */
     public function findChildren ($uid)
     {
-        $sql = "SELECT * FROM `pages` WHERE `no_search` = 0 AND `deleted` = 0 AND `doktype` = 1 AND `pid` = {$uid}";
+        $sql = "SELECT * FROM `pages` ";
+        $sql .= "WHERE `no_search` = 0 AND `deleted` = 0 ";
+        $sql .= "AND `doktype` = 1 AND `pid` = {$uid} ";
         $query = $this->createQuery();
         $query->statement($sql);
         $pages = array();
-        foreach ($query->execute() as $row) {
-            $pages[] = $row;
+        foreach ($query->execute() as $page) {
+            $pages[] = $page;
         }
         return $pages;
     }

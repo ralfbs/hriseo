@@ -31,7 +31,7 @@ $TCA['pages']['columns'][$TCA['pages']['ctrl']['type']]['config']['items'][] = a
 
 $TCA['pages']['types']['1']['showitem'] = $TCA['pages']['types']['1']['showitem'];
 $TCA['pages']['types']['1']['showitem'] .= ',--div--;LLL:EXT:hriseo/Resources/Private/Language/locallang_db.xml:tx_hriseo.title,';
-$TCA['pages']['types']['1']['showitem'] .= 'tx_hriseo_exclcudeseo';
+$TCA['pages']['types']['1']['showitem'] .= 'tx_hriseo_frequency, tx_hriseo_priority';
 
 
 

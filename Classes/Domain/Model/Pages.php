@@ -43,11 +43,41 @@ class Tx_Hriseo_Domain_Model_Pages extends Tx_Extbase_DomainObject_AbstractEntit
 
     /**
      *
+     * @var string
+     */
+    protected $frequency;
+
+    /**
+     *
+     * @var float
+     */
+    protected $priority;
+
+    /**
+     *
      * @return string
      */
     public function getLastmod ()
     {
         return $this->lastmod;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getFrequency ()
+    {
+        return $this->frequency;
+    }
+
+    /**
+     *
+     * @return number
+     */
+    public function getPriority ()
+    {
+        return $this->priority;
     }
 
     /**

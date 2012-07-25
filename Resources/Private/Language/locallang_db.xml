@@ -9,7 +9,16 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="tx_hriseo.title">SEO</label>
-			<label index="tx_hriseo_domain_model_pages.isNotSeo">Excluce from SEO</label>
+			<label index="tx_hriseo_domain_model_pages.frequency">Frequency (blank for inherit)</label>
+			<label index="tx_hriseo_domain_model_pages.frequency.inherit"></label>
+			<label index="tx_hriseo_domain_model_pages.frequency.always">always</label>
+			<label index="tx_hriseo_domain_model_pages.frequency.hourly">hourly</label>
+			<label index="tx_hriseo_domain_model_pages.frequency.daily">daily</label>
+			<label index="tx_hriseo_domain_model_pages.frequency.weekly">weekly</label>
+			<label index="tx_hriseo_domain_model_pages.frequency.monthly">monthly</label>
+			<label index="tx_hriseo_domain_model_pages.frequency.yearly">yearly</label>
+			<label index="tx_hriseo_domain_model_pages.frequency.never">never</label>
+			<label index="tx_hriseo_domain_model_pages.priority">Priority [0..1]</label>
 		</languageKey>
 	</data>
 </T3locallang>
